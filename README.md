@@ -9,7 +9,7 @@
 **We are currently working with our legal team on releasing the code. Please check back at the end of July 2024.**
 
 
-<!-- ### Citations <a name="citations"></a>
+### Citations <a name="citations"></a>
 If you use the code and/or models, please cite the relevant papers.
 For the `nebula` code base:
 ```bibtex
@@ -21,4 +21,4 @@ For the `nebula` code base:
   year={2024}
 }
 
-``` -->
+```
