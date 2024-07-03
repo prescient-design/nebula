@@ -7,3 +7,18 @@
 
 
 **We are currently working with our legal team on releasing the code. Please check back at the end of July 2024.**
+
+
+<!-- ### Citations <a name="citations"></a>
+If you use the code and/or models, please cite the relevant papers.
+For the `nebula` code base:
+```bibtex
+
+@article{nebula_2024,
+  title={NEBULA: Neural Empirical Bayes Under LAtent Representations for Efficient and Controllable Design of Molecular Libraries},
+  author={Nowara, Ewa M and Pinheiro, Pedro O and Mahajan, S Pooja and Mahmood, Omar and Watkins, Andrew M and and Saremi, Saee and Maser Michael},
+  journal={ICML 2024 AI for Science workshop},
+  year={2024}
+}
+
+``` -->
