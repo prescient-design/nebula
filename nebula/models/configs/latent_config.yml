@@ -1,0 +1,13 @@
+model_outer_encoder: encoder3d_vqvae
+model_outer_decoder: decoder3d_vqvae
+model_name: unet3d_latent_vqvae_888
+n_channels: 32
+n_channels_latent: 32  
+vqvae_out_dim: 512
+ch_mults: [1, 2, 2, 4]
+ch_mults_latent: [1, 2, 2, 4] 
+is_attn: [False, False, True, True]
+n_blocks: 2
+n_groups: 16  
+n_groups_latent: 16  
+device: cuda
