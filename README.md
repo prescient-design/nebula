@@ -37,7 +37,7 @@ If you use the code, please cite this paper.
 Below we show a example generated samples for seed compounds from within-dataset [GEOM-Drugs](https://www.nature.com/articles/s41597-022-01288-4) (top), cross-dataset generalization to [PubChem](https://arxiv.org/abs/2305.18454) (middle), and cross-dataset generalization to [recent cancer drugs](https://drughunter.com/articles/acs-spring-2024-first-time-disclosures/) (bottom). 
 
 <p align="center">
-<img src="figures/NEBULA_generations.png" width=20000px>
+<img src="figures/NEBULA_generations.jpg" width=20000px>
 </p>
 
 * NEBULA generates large molecular libraries around a seed ligand molecule nearly an order of magnitude faster than existing methods without sacrificing sample quality.
