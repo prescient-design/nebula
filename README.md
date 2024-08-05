@@ -71,6 +71,8 @@ To train NEBULA, first train the compression model used to obtain the latent emb
 To train the **compression model** on GEOM-Drugs, run inside `nebula/` directory:
 
 ```
+cd nebula
+
 python train_vqvae.py \
   --model_config models/configs/vqvae_config.yml \
   --exp_name vqvae/ 
@@ -79,10 +81,12 @@ python train_vqvae.py \
 To train the **latent model** on GEOM-Drugs, run inside `nebula/` directory:
 
 ```
+cd nebula
+
 python train_latent.py \
   --model_config models/configs/latent_config.yml \
-  --pretrained_path output/vqvae/checkpoint.pth.tar 
-  --exp_name latent/ \
+  --pretrained_path output/vqvae/checkpoint.pth.tar \
+  --exp_name latent/ 
 ```
 
 These scripts will train a the models on the train set and evaluate the reconstruction performance on the validation set at each epoch. 
@@ -98,22 +102,27 @@ The GEOM-drugs models were both trained with batch size 32 (on 4 GPUs) for 150 e
 Once the compression and latent models have been trained, generate new samples around a seed of interest using this command:
 
 ```
-python sample_from_seed_pth.py \
+cd nebula
+
+python sample_from_seed_file.py \
   --exp_name sample/ \
   --delta 0.25 \
   --total_molecules 2 \
-  --visualize_voxels 1 \
+  --visualize_voxels 0 \
   --visualize_smiles 1
 ```
 
 Alternatively, generation can be performed on a new input sequence of 1D SMILES of interest (the 3D conformer with xyz coordinates will be computationally generated for it):
 
 ```
+cd nebula
+
 python sample_from_seed_smiles.py \
   --exp_name sample/ \
   --delta 0.25 \
   --total_molecules 2 \
-  --visualize_voxels 1 \
+  --input_smiles "Brc1c(CSc2nc3ccccc3s2)nc2ncccn12" \
+  --visualize_voxels 0 \
   --visualize_smiles 1
 ```
 
