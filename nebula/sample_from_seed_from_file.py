@@ -85,14 +85,12 @@ def main(config):
     
     # print(generated_smiles)
     # optionally save the generated SMILES as png
-    import pdb; pdb.set_trace()
     if config["visualize_smiles"]:
         from rdkit.Chem import Draw
 
         dirname_smiles = os.path.join(config['output_dir'], "smiles_generated")
         makedir(dirname_smiles)
 
-        import pdb; pdb.set_trace()
         smiles_seed_mol1 = Chem.MolFromSmiles(dset[ii]["smiles"])
         smiles_img_seed1 = Draw.MolToImage(smiles_seed_mol1)
         smiles_img_seed1.save(os.path.join(dirname_smiles, "smiles_in_1.png")) 
