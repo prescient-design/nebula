@@ -107,9 +107,11 @@ cd nebula
 python sample_from_seed_file.py \
   --exp_name sample/ \
   --delta 0.25 \
+  --n_chains 2 \
   --total_molecules 2 \
-  --visualize_voxels 0 \
-  --visualize_smiles 1
+  --visualize_smiles 1 \
+  --visualize_voxels 1
+
 ```
 
 Alternatively, generation can be performed on a new input sequence of 1D SMILES of interest (the 3D conformer with xyz coordinates will be computationally generated for it):
@@ -118,12 +120,14 @@ Alternatively, generation can be performed on a new input sequence of 1D SMILES 
 cd nebula
 
 python sample_from_seed_smiles.py \
-  --exp_name sample/ \
-  --delta 0.25 \
-  --total_molecules 2 \
-  --input_smiles "Brc1c(CSc2nc3ccccc3s2)nc2ncccn12" \
-  --visualize_voxels 0 \
-  --visualize_smiles 1
+    --exp_name sample/ \
+    --delta 0.25 \
+    --n_chains 10 \
+    --total_molecules 10 \
+    --visualize_smiles 1 \
+    --visualize_voxels 1 \
+    --input_smiles "N#Cc1ccc(N=C(O)C(F)(F)Cl)cn1"
+
 ```
 
 It saves the generated molecules as xyz files and it post-processes them to obtain generated SMILES.
