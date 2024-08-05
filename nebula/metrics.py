@@ -1,6 +1,5 @@
 import torch
 import torch.nn.functional as F
-from sklearn import metrics
 
 class Metrics():
     def __init__(self, **kwargs):

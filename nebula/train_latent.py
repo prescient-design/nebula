@@ -447,6 +447,8 @@ def compute_latent_stats(dset_train, model_outer_encoder, config, voxelizer):
             if torch.is_tensor(latent_mean):
                 latent_mean = latent_mean.cpu().numpy()
                 latent_std = latent_std.cpu().numpy()
+                latent_min = latent_min.cpu().numpy()
+                latent_max = latent_max.cpu().numpy()
             
             np.save(mean_file_name, latent_mean)
             np.save(std_file_name, latent_std)
