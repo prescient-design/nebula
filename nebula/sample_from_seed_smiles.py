@@ -23,13 +23,13 @@ def main(config):
     python sample_from_seed_smiles.py \
     --exp_name sample/ \
     --delta 0.25 \
-    --total_molecules 2 \
-    --visualize_voxels 0 \
-    --visualize_smiles 0
+    --n_chains 10 \
+    --total_molecules 10 \
+    --visualize_smiles 1 \
+    --input_smiles "N#Cc1ccc(N=C(O)C(F)(F)Cl)cn1"
     """
 
-    # wjs_steps_total= [5, 10, 20, 50, 100]
-    wjs_steps_total= [5]
+    wjs_steps_total = [5, 10, 20, 50, 100]
 
     # convert the input 1-D SMILES to 3D conformers and pre-process them
     makedir(config["seed_dir"])
@@ -68,14 +68,13 @@ def main(config):
     dirname_xyz = os.path.join(config['output_dir'], "xyzs")
     makedir(dirname_xyz)
 
-    for ii in range(len(dset)):  # for multiple conformers
+    for ii in range(1): # len(dset)):  # for multiple conformers
         if ii > 0:
             mols_total = []
 
         for rep in range(config["repeats"]):
             if count >= config["total_molecules"]:
                 break
-            
             y, v = initialize_with_seed(config, dset[ii], model_outer_encoder, voxelizer_discrete)
             mols, count = sample(config, y, v, wjs_steps_total, count, voxelizer_discrete, model_inner_ae, model_outer_encoder, model_outer_decoder)
 
@@ -108,7 +107,6 @@ def main(config):
     return generated_smiles
 
 def sample(config, y, v, wjs_steps_total, count, voxelizer_discrete, model_inner_ae, model_outer_encoder, model_outer_decoder):
-
     wjs_steps = [wjs_steps_total[0]]
     if len(wjs_steps_total) > 1:
         wjs_steps.extend(np.diff(np.array(wjs_steps_total)).tolist())

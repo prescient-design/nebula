@@ -26,6 +26,7 @@ def main(config):
     python sample_from_seed_pth.py \
     --exp_name sample/ \
     --delta 0.25 \
+    --n_chains 2 \
     --total_molecules 2 \
     --visualize_voxels 1 \
     --visualize_smiles 1
@@ -62,14 +63,13 @@ def main(config):
     dirname_xyz = os.path.join(config['output_dir'], "xyzs")
     makedir(dirname_xyz)
 
-    for ii in range(len(dset)):  # for multiple conformers
+    for ii in range(1): #len(dset)):  # for multiple conformers
         if ii > 0:
             mols_total = []
 
         for rep in range(config["repeats"]):
             if count >= config["total_molecules"]:
                 break
-            
             y, v = initialize_with_seed(config, dset[ii], model_outer_encoder, voxelizer_discrete)
             mols, count = sample(config, y, v, wjs_steps_total, count, voxelizer_discrete, model_inner_ae, model_outer_encoder, model_outer_decoder)
 
@@ -85,19 +85,22 @@ def main(config):
     
     # print(generated_smiles)
     # optionally save the generated SMILES as png
+    import pdb; pdb.set_trace()
     if config["visualize_smiles"]:
         from rdkit.Chem import Draw
 
-        makedir("smiles_generated")
+        dirname_smiles = os.path.join(config['output_dir'], "smiles_generated")
+        makedir(dirname_smiles)
 
-        smiles_seed_mol1 = Chem.MolFromSmiles(config["input_smiles"])
+        import pdb; pdb.set_trace()
+        smiles_seed_mol1 = Chem.MolFromSmiles(dset[ii]["smiles"])
         smiles_img_seed1 = Draw.MolToImage(smiles_seed_mol1)
-        smiles_img_seed1.save("smiles_generated/smiles_in_1.png") 
+        smiles_img_seed1.save(os.path.join(dirname_smiles, "smiles_in_1.png")) 
 
         for i in range(len(generated_smiles)):
             smiles_seed_mol2 = Chem.MolFromSmiles(generated_smiles[i])
             smiles_img_seed2 = Draw.MolToImage(smiles_seed_mol2)
-            smiles_img_seed2.save("smiles_generated/smiles_out_1_" + str(i) + ".png") 
+            smiles_img_seed2.save(os.path.join(dirname_smiles, "smiles_out_1_" + str(i) + ".png"))
 
     return generated_smiles
 
