@@ -2,8 +2,6 @@
 **N**eural **E**mpirical **B**ayes **U**nder **La**tent Representations for Efficient and Controllable Design of Molecular Libraries
 
 
-## Temporary repo for legal review before public code release
-
 This repository contains the implementation of `NEBULA` presented in AI4Science Workshop at ICML 2024 titled [Neural Empirical Bayes Under Latent Representations for Efficient and Controllable Design of Molecular Libraries]().
 
 If you use the code, please cite this paper.
